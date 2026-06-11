@@ -1,0 +1,43 @@
+# Model + pipeline configuration
+
+embedding_models:
+  clip:
+    name: "ViT-L-14"
+    pretrained: "openai"
+    image_dim: 768
+    text_dim: 768
+  siglip:
+    name: "google/siglip-so400m-patch14-384"
+    image_dim: 1152
+    text_dim: 1152
+  dinov2:
+    name: "facebook/dinov2-large"
+    image_dim: 1024
+
+extraction:
+  batch_size: 256
+  num_workers: 8
+  fp16: true
+  shard_size: 8192        # rows per cached .npy shard
+  image_size: 384
+
+fusion:
+  pca_dim: 512
+  l2_normalize_blocks: true   # normalize each model's block before concat
+
+lightgbm:
+  objective: multiclass
+  boosting_type: gbdt
+  num_leaves: 127
+  learning_rate: 0.05
+  n_estimators: 1500
+  feature_fraction: 0.8
+  bagging_fraction: 0.8
+  bagging_freq: 1
+  min_child_samples: 50
+  early_stopping_rounds: 100
+  verbosity: -1
+
+train:
+  val_fraction: 0.1
+  seed: 42
