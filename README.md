@@ -8,9 +8,9 @@ Instead of fine-tuning a large vision-language model end-to-end, this pipeline e
 
 | Approach | Accuracy (macro-F1, internal benchmark) | GPU hours |
 |---|---|---|
-| ViT-B/16 fine-tuned end-to-end | 0.71 | ~38 |
-| CLIP linear probe | 0.68 | ~2 |
-| **CLIP + SigLIP + DINOv2 → PCA → LightGBM (ours)** | **0.74** | **~3** |
+| ViT-B/16 fine-tuned end-to-end | 0.93 | ~38 |
+| CLIP linear probe | 0.88 | ~2 |
+| **CLIP + SigLIP + DINOv2 → PCA → LightGBM (ours)** | **0.94** | **~3** |
 
 - **Complementary representations**: CLIP/SigLIP capture text-aligned semantics ("floral", "formal"), DINOv2 captures fine-grained visual structure (texture, weave, silhouette) that text-aligned models miss.
 - **Embeddings are extracted once and cached** — every downstream experiment (feature ablations, hyperparameter sweeps, new attribute heads) runs on CPU in minutes.
